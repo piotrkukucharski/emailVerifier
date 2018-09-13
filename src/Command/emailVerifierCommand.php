@@ -28,9 +28,7 @@
 		protected function configure(){
 			$this
 				->setName('email:verifier')
-				->setDescription('Creates a new user.')
-				->setHelp('This command allows you to create a user...')
-				->addArgument('fileName',InputArgument::REQUIRED,"nameFile");
+				->addArgument('fileName',InputArgument::REQUIRED);
 		}
 
 		protected function execute(InputInterface $input, OutputInterface $output){

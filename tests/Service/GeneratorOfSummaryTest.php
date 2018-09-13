@@ -18,7 +18,7 @@
 		public function testGenerateSummary()
 		{
 			$fileName="summary.txt";
-			$defaultPath="./var/";
+			$defaultPath="./tests/var/";
 
 			$summary=new GeneratorOfSummary();
 			$summary->setDefaultPath($defaultPath);
