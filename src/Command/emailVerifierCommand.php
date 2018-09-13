@@ -16,6 +16,7 @@
 
 	use App\Service\CSVfile;
 	use App\Service\EmailVerifier;
+	use App\Service\GeneratorOfSummary;
 
 	class emailVerifierCommand extends Command
 	{
@@ -41,11 +42,12 @@
 			$csv->save_Array_As_CSV("incorrect_emails".".csv",$emails["incorrect_emails"]);
 			$csv->save_Array_As_CSV("correct_emails".".csv",$emails["correct_emails"]);
 
-			$summary=fopen($this->defaultPath."summary.txt","w");
-			fwrite($summary, "All Emails ".(count($emails, COUNT_RECURSIVE)-2)."\n");
-			fwrite($summary, "Correct Emails ".count($emails["correct_emails"])."\n");
-			fwrite($summary, "Incorrect Emails ".count($emails["incorrect_emails"])."\n");
-			fclose($summary);
-
+			$summary=new GeneratorOfSummary();
+			$summary->setDefaultPath($this->defaultPath);
+			$summary->setFileName("summary.txt");
+			$summary->setNumberAllEmails(count($emails, COUNT_RECURSIVE)-2);
+			$summary->setNumberAllCorrectEmails(count($emails["correct_emails"]));
+			$summary->setNumberAllIncorrectEmails(count($emails["incorrect_emails"]));
+			$summary->generateSummary();
 		}
 	}

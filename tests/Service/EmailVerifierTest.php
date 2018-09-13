@@ -16,8 +16,18 @@
 	{
 		public function testCheck_group_emails(){
 			$emailVerifier=new EmailVerifier();
-			$correct_emails=array("miczab8@wp.pl","biuro@swiatla-poznan.pl","barteksquall@poczta.onet.pl");
-			$incorrect_emails=array("daron@.wp.pl","firma@paumil.com","rdombski@lodz2.p.lodz.pl","em36@.interia.pl","t.o.m.h.el.h.u.t.w.alt.e.r.t.o.m.@googlemail.com",'samochód66@o2.pl');
+
+			$correct_emails=array(
+				"miczab8@wp.pl","biuro@swiatla-poznan.pl",
+				"barteksquall@poczta.onet.pl"
+			);
+			$incorrect_emails=array(
+				"daron@.wp.pl","firma@paumil.com",
+				"rdombski@lodz2.p.lodz.pl","em36@.interia.pl",
+				"t.o.m.h.el.h.u.t.w.alt.e.r.t.o.m.@googlemail.com",
+				'samochód66@o2.pl'
+			);
+
 			$correct_results=array(
 				"correct_emails"=>$correct_emails,
 				"incorrect_emails"=>$incorrect_emails
