@@ -39,7 +39,8 @@
 			$emails=$email_verifier->check_group_emails($emails);
 			$csv->save_Array_As_CSV("incorrect_emails".".csv",$emails["incorrect_emails"]);
 			$csv->save_Array_As_CSV("correct_emails".".csv",$emails["correct_emails"]);
-			$summary=fopen("summary.txt","w");
+			
+			$summary=fopen("./var/"."summary.txt","w");
 			fwrite($summary, "All Emails ".(count($emails, COUNT_RECURSIVE)-2)."\n");
 			fwrite($summary, "Correct Emails ".count($emails["correct_emails"])."\n");
 			fwrite($summary, "Incorrect Emails ".count($emails["incorrect_emails"])."\n");
