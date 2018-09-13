@@ -20,6 +20,7 @@
 	class emailVerifierCommand extends Command
 	{
 		public function __construct(){
+			$this->defaultPath="./var/";
 			parent::__construct();
 		}
 
@@ -32,15 +33,15 @@
 		}
 
 		protected function execute(InputInterface $input, OutputInterface $output){
-			$csv=new CSVfile();
+			$csv=new CSVfile($this->defaultPath);
 			$email_verifier=new EmailVerifier();
 			$fileName=$input->getArgument("fileName");
 			$emails=$csv->read_CSV_As_Array($fileName);
 			$emails=$email_verifier->check_group_emails($emails);
 			$csv->save_Array_As_CSV("incorrect_emails".".csv",$emails["incorrect_emails"]);
 			$csv->save_Array_As_CSV("correct_emails".".csv",$emails["correct_emails"]);
-			
-			$summary=fopen("./var/"."summary.txt","w");
+
+			$summary=fopen($this->defaultPath."summary.txt","w");
 			fwrite($summary, "All Emails ".(count($emails, COUNT_RECURSIVE)-2)."\n");
 			fwrite($summary, "Correct Emails ".count($emails["correct_emails"])."\n");
 			fwrite($summary, "Incorrect Emails ".count($emails["incorrect_emails"])."\n");

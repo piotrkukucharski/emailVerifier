@@ -11,8 +11,8 @@
 
 	class CSVfile
 	{
-		public function __construct(){
-			$this->defaultPath="./var/";
+		public function __construct($defaultPath){
+			$this->defaultPath=$defaultPath;
 		}
 
 		public function read_CSV_As_Array($fileName){
