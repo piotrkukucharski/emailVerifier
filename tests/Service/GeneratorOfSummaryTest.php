@@ -30,6 +30,7 @@
 			$this->assertFileExists($defaultPath.$fileName);
 			$this->assertFileIsReadable($defaultPath.$fileName);
 			$this->assertFileIsWritable($defaultPath.$fileName);
+			unlink($defaultPath.$fileName);
 
 
 		}

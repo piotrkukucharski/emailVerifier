@@ -18,7 +18,7 @@
 	use App\Service\EmailVerifier;
 	use App\Service\GeneratorOfSummary;
 
-	class emailVerifierCommand extends Command
+	class EmailVerifierCommand extends Command
 	{
 		public function __construct(){
 			$this->defaultPath="./var/";
@@ -28,10 +28,16 @@
 		protected function configure(){
 			$this
 				->setName('email:verifier')
-				->addArgument('fileName',InputArgument::REQUIRED);
+				->addArgument('fileName',InputArgument::REQUIRED)
+				->addArgument("defaultPath",InputArgument::OPTIONAL);
 		}
 
 		protected function execute(InputInterface $input, OutputInterface $output){
+
+			if($input->getArgument("defaultPath")){
+				$this->defaultPath=$input->getArgument("defaultPath");
+			}
+
 			$csv=new CSVfile($this->defaultPath);
 			$email_verifier=new EmailVerifier();
 			$fileName=$input->getArgument("fileName");
@@ -47,5 +53,7 @@
 			$summary->setNumberAllCorrectEmails(count($emails["correct_emails"]));
 			$summary->setNumberAllIncorrectEmails(count($emails["incorrect_emails"]));
 			$summary->generateSummary();
+
+			$output->write("Done");
 		}
 	}
