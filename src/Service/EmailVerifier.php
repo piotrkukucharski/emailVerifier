@@ -52,7 +52,6 @@
 				new DNSCheckValidation(),
 				new NoRFCWarningsValidation(),
 				new SpoofCheckValidation(),
-
 			]);
 			return $validator->isValid($email, $multipleValidations);
 		}
