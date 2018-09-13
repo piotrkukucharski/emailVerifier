@@ -5,4 +5,11 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
 /.idea/
+*.csv
+*.txt
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
